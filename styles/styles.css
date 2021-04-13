@@ -62,11 +62,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 18px;
+    padding: 8px 18px 0 18px;
     box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 0.05);
     position: fixed;
     bottom: 0;
     left: 0;
+    color: #505050;
+    font-size: 14px;
 }
 
 .inferior input {
@@ -74,6 +76,7 @@ body {
     border: none;
     font-family: 'Roboto';
     width: calc(100% - 40px);
+    margin-bottom: 8px;
 }
 
 ::-webkit-input-placeholder {
@@ -87,6 +90,7 @@ input:focus {
 
 .inferior ion-icon {
     font-size: 26px;
+    color: black;
 }
 
 .tela-contatos {
@@ -143,4 +147,8 @@ h1 {
 
 h1:last-child {
     height: 66px;
+}
+
+.escondido {
+    display: none;
 }

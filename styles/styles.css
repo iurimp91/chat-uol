@@ -1,0 +1,23 @@
+body {
+    background-color: #F3F3F3;
+}
+
+.topo {
+    height: 80px;
+    padding-right: 22px;
+    padding-left: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: white;
+}
+
+.topo img {
+    width: 75px;
+    height: 53px;
+}
+
+.topo ion-icon {
+    font-size: 42px;
+}

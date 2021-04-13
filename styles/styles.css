@@ -29,6 +29,7 @@ body {
 
 .mensagens {
     margin-top: 106px;
+    margin-bottom: 86px;
 }
 
 .mensagem {
@@ -73,7 +74,6 @@ body {
     border: none;
     font-family: 'Roboto';
     width: calc(100% - 40px);
-    
 }
 
 ::-webkit-input-placeholder {
@@ -87,4 +87,60 @@ input:focus {
 
 .inferior ion-icon {
     font-size: 26px;
+}
+
+.tela-contatos {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.transparencia {
+    width: calc(100% - 259px);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.contatos {
+    width: 259px;
+    height: 100%;
+    background-color: white;
+    text-align: center;
+    font-size: 16px;
+    overflow-y: auto;
+}
+
+h1 {
+    width: 100%;
+    height: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contato {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.contato ion-icon {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.contato img {
+    position: absolute;
+    right: 27px;
+}
+
+h1:last-child {
+    height: 66px;
 }

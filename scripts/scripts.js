@@ -12,7 +12,7 @@ function renderizarMensagens(mensagens) {
     const elementoMensagens = document.querySelector(".mensagens");
 
     for (let i = 0; i < arrayMensagens.length; i++) {
-        if (arrayMensagens[i].text.indexOf('entra') || arrayMensagens[i].text.indexOf('sai')) {
+        if (arrayMensagens[i].type === "status") {
             elementoMensagens.innerHTML += `
             <li class="mensagem entra-sai">
                 <div class="hora">(${arrayMensagens[i].time})</div>
@@ -20,5 +20,25 @@ function renderizarMensagens(mensagens) {
             </li>
         `;
         }
+
+        if (arrayMensagens[i].type === "message") {
+            elementoMensagens.innerHTML += `
+            <li class="mensagem">
+                <div class="hora">(${arrayMensagens[i].time})</div>
+                <div class="texto"><strong>${arrayMensagens[i].from}</strong> para <strong>Todos:</strong> ${arrayMensagens[i].text}</div>
+            </li>
+        `;
+        }
+
+        if (arrayMensagens[i].type === "private_message") {
+            elementoMensagens.innerHTML += `
+            <li class="mensagem reservada">
+                <div class="hora">(${arrayMensagens[i].time})</div>
+                <div class="texto"><strong>${arrayMensagens[i].from}</strong> reservadamente para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</div>
+            </li>
+        `;
+        }
     }
 }
+
+setInterval(buscarMensagens, 3000);

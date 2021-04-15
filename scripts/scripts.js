@@ -1,4 +1,3 @@
-
 buscarMensagens();
 
 function buscarMensagens() {
@@ -39,6 +38,11 @@ function renderizarMensagens(mensagens) {
         `;
         }
     }
+    rolarPaginaBaixo();
 }
+setInterval(buscarMensagens, 10000);
 
-setInterval(buscarMensagens, 3000);
+function rolarPaginaBaixo() {
+    const elementoRolagem = document.querySelector(".mensagens li:last-child");
+    elementoRolagem.scrollIntoView();
+}

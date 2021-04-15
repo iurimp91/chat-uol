@@ -1,4 +1,30 @@
-buscarMensagens();
+let objetoNome;
+
+function entrarNaSala() {
+    const nome = document.querySelector(".tela-entrada input").value;
+    objetoNome = {name: nome};
+    const requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
+
+    requisicaoEntrada.then(loginAceito);
+    requisicaoEntrada.catch(loginErro);
+}
+
+function loginAceito() {
+    const elementoTelaEntrada = document.querySelector(".tela-entrada");
+    elementoTelaEntrada.classList.add("escondido");
+
+    buscarMensagens();
+}
+
+function loginErro() {
+    alert("Esse nome de usuário já existe!");
+}
+
+function manterConexao() {
+    const conexaoAtiva = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", objetoNome);
+    console.log("Estou conectado");
+    console.log(objetoNome);
+}
 
 function buscarMensagens() {
     const mensagens = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
@@ -41,29 +67,10 @@ function renderizarMensagens(mensagens) {
     rolarPaginaBaixo();
 }
 
-//setInterval(buscarMensagens, 3000);
+//setInterval(buscarMensagens, 13000);
+setInterval(manterConexao, 5000);
 
 function rolarPaginaBaixo() {
     const elementoRolagem = document.querySelector(".mensagens li:last-child");
     elementoRolagem.scrollIntoView();
 }
-
-function entrarNaSala() {
-    const nome = document.querySelector(".tela-entrada input").value;
-    const objetoNome = {name: nome};
-    const requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
-
-    requisicaoEntrada.then(loginAceito);
-    requisicaoEntrada.catch(loginErro);
-}
-
-function loginAceito() {
-    const elementoTelaEntrada = document.querySelector(".tela-entrada");
-    elementoTelaEntrada.classList.add("escondido");
-}
-
-function loginErro() {
-    alert("Esse nome de usuário já existe!");
-}
-
-//setInterval(entrarNaSala, 5000);

@@ -15,7 +15,7 @@
 <body>
     <div class="topo">
         <img src="medias/logouol.png" alt="Logo do bate-papo UOL">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon onclick="abrirContatos()" name="people"></ion-icon>
     </div>
 
     <ul class="mensagens">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="tela-contatos escondido">
-        <div class="transparencia"></div>
+        <div onclick="abrirContatos()" class="transparencia"></div>
         <div class="contatos">
             <h1>Escolha um contato</br>para enviar a mensagem:</h1>
             <ul class="lista-contatos">
@@ -61,7 +61,7 @@
                 <div class="visivel-reservado contato">
                     <ion-icon name="lock-closed"></ion-icon>
                     Reservadamente
-                    <img src="medias/checkverde.png" alt="ícone de checkmark verde">
+                    <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
                 </div>
             </div>
         </div>

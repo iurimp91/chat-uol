@@ -22,17 +22,57 @@ function loginAceito() {
     setInterval(buscarMensagens, 3000);
     setInterval(manterConexao, 5000);
 
+    buscarParticipantes();
     buscarMensagens();
 }
 
 function loginErro() {
     alert("Esse nome de usuário já existe!");
+    //tratar o reload da tela quando isso acontecer. ela ta ficand ona tela de loading.
 }
 
 function manterConexao() {
     const conexaoAtiva = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", objetoNome);
-    //console.log("Estou conectado");
-    //console.log(objetoNome);
+}
+
+function buscarParticipantes() {
+    const participantes = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants");
+    participantes.then(renderizarParticipantes);
+}
+
+function renderizarParticipantes(participantes) {
+    const arrayParticipantes = participantes.data;
+    const elementoListaContatos = document.querySelector(".lista-contatos");
+    elementoListaContatos.innerHTML = `
+        <li onclick="selecionarContato(this)" class="contato selecionado">
+            <ion-icon name="people"></ion-icon>
+            <span>Todos</span>
+            <img src="medias/checkverde.png" alt="ícone de checkmark verde">
+        </li>
+    `;
+
+    for (let i = 0; i < arrayParticipantes.length; i++) {
+        elementoListaContatos.innerHTML += `
+            <li onclick="selecionarContato(this)" class="contato">
+                <ion-icon name="person-circle"></ion-icon>
+                <span>${arrayParticipantes[i].name}</span>
+                <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
+            </li>
+        `;
+        //depois tirar aqui o meu nome da lista de contatos
+    }
+}
+
+function selecionarContato(contato) {
+    const contatoSelecionadoAntes = document.querySelector(".tela-contatos .selecionado");
+    contatoSelecionadoAntes.classList.remove("selecionado");
+    const elementoCheckVerdeSelecionadoAntes = contatoSelecionadoAntes.querySelector("img");
+    elementoCheckVerdeSelecionadoAntes.classList.add("escondido");
+
+    const elementoCheckVerde = contato.querySelector("img");
+    const contatoSelecionado = contato.querySelector("span").innerHTML;
+    elementoCheckVerde.classList.remove("escondido");
+    contato.classList.add("selecionado");
 }
 
 function buscarMensagens() {
@@ -42,7 +82,6 @@ function buscarMensagens() {
 
 function renderizarMensagens(mensagens) {
     const arrayMensagens = mensagens.data;
-    //console.log(arrayMensagens);
     const elementoMensagens = document.querySelector(".mensagens");
     elementoMensagens.innerHTML = "";
 
@@ -93,4 +132,9 @@ function enviarMensagem() {
 function desconectado() {
     alert("Você foi desconectado, por favor, faça o login novamente.");
     window.location.reload();
+}
+
+function abrirContatos() {
+    const elementoTelaContatos = document.querySelector(".tela-contatos");
+    elementoTelaContatos.classList.toggle("escondido");
 }

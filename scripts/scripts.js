@@ -155,8 +155,8 @@ function renderizarMensagens(mensagens) {
         if (arrayMensagens[i].type === "status") {
             elementoMensagens.innerHTML += `
             <li class="mensagem entra-sai">
-                <div class="hora">(${arrayMensagens[i].time})</div>
-                <div class="texto"><strong>${arrayMensagens[i].from}</strong> ${arrayMensagens[i].text}</div>
+                <span class="hora">(${arrayMensagens[i].time})</span>
+                <span class="texto"><strong>${arrayMensagens[i].from}</strong> ${arrayMensagens[i].text}</span>
             </li>
         `;
         }
@@ -164,8 +164,8 @@ function renderizarMensagens(mensagens) {
         if (arrayMensagens[i].type === "message") {
             elementoMensagens.innerHTML += `
             <li class="mensagem">
-                <div class="hora">(${arrayMensagens[i].time})</div>
-                <div class="texto"><strong>${arrayMensagens[i].from}</strong> para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</div>
+                <span class="hora">(${arrayMensagens[i].time})</span>
+                <span class="texto"><strong>${arrayMensagens[i].from}</strong> para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</span>
             </li>
         `;
         }
@@ -173,8 +173,8 @@ function renderizarMensagens(mensagens) {
         if (arrayMensagens[i].type === "private_message" && arrayMensagens[i].to === nome) {
             elementoMensagens.innerHTML += `
             <li class="mensagem reservada">
-                <div class="hora">(${arrayMensagens[i].time})</div>
-                <div class="texto"><strong>${arrayMensagens[i].from}</strong> reservadamente para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</div>
+                <span class="hora">(${arrayMensagens[i].time})</span>
+                <span class="texto"><strong>${arrayMensagens[i].from}</strong> reservadamente para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</span>
             </li>
         `;
         }

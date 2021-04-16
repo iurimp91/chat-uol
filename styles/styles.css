@@ -38,7 +38,6 @@ body {
 }
 
 .mensagem {
-    display: flex;
     padding: 15px 9px 15px 8px;
     background-color: white;
     font-size: 14px;
@@ -198,6 +197,10 @@ h1:last-child {
     color: #696969;
     cursor: pointer;
     margin-bottom: 15px;
+}
+
+.tela-entrada button:hover {
+    background-color: #a8a7a7;
 }
 
 .carregando img {

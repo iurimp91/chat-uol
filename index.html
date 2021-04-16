@@ -35,32 +35,17 @@
         <div class="contatos">
             <h1>Escolha um contato</br>para enviar a mensagem:</h1>
             <ul class="lista-contatos">
-                <li class="contato">
-                    <ion-icon name="people"></ion-icon>
-                    Todos
-                    <img src="medias/checkverde.png" alt="ícone de checkmark verde">
-                </li>
-                <li class="contato">
-                    <ion-icon name="person-circle"></ion-icon>
-                    João
-                    <img src="medias/checkverde.png" alt="ícone de checkmark verde">
-                </li>
-                <li class="contato">
-                    <ion-icon name="person-circle"></ion-icon>
-                    Maria
-                    <img src="medias/checkverde.png" alt="ícone de checkmark verde">
-                </li>
             </ul>
             <h1>Escolha a visibilidade:</h1>
             <div class="visibilidade">
-                <div class="visivel-publico contato">
+                <div onclick="selecionarVisibilidade(this)" class="contato selecionado">
                     <ion-icon name="lock-open"></ion-icon>
-                    Público
+                    <span>Público</span>
                     <img src="medias/checkverde.png" alt="ícone de checkmark verde">
                 </div>
-                <div class="visivel-reservado contato">
+                <div onclick="selecionarVisibilidade(this)" class="contato">
                     <ion-icon name="lock-closed"></ion-icon>
-                    Reservadamente
+                    <span>Reservadamente</span>
                     <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
                 </div>
             </div>

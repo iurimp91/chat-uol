@@ -21,6 +21,7 @@ function loginAceito() {
 
     setInterval(buscarMensagens, 3000);
     setInterval(manterConexao, 5000);
+    setInterval(buscarParticipantes, 10000);
 
     buscarParticipantes();
     buscarMensagens();
@@ -60,6 +61,7 @@ function renderizarParticipantes(participantes) {
             </li>
         `;
         //depois tirar aqui o meu nome da lista de contatos
+        //tratar para ficar com o check verde mesmo se atualizar
     }
 }
 
@@ -73,6 +75,20 @@ function selecionarContato(contato) {
     const contatoSelecionado = contato.querySelector("span").innerHTML;
     elementoCheckVerde.classList.remove("escondido");
     contato.classList.add("selecionado");
+}
+
+function selecionarVisibilidade(visibilidade) {
+    const visibilidadeSelecionadaAntes = document.querySelector(".visibilidade .selecionado");
+    visibilidadeSelecionadaAntes.classList.remove("selecionado");
+    const elementoCheckVerdeSelecionadoAntes = visibilidadeSelecionadaAntes.querySelector("img");
+    elementoCheckVerdeSelecionadoAntes.classList.add("escondido");
+    
+    const visibilidadeSelecionada = visibilidade.querySelector("span").innerHTML;
+    console.log(visibilidadeSelecionada);
+    const elementoCheckVerde = visibilidade.querySelector("img");
+    elementoCheckVerde.classList.remove("escondido");
+    visibilidade.classList.add("selecionado");
+    
 }
 
 function buscarMensagens() {

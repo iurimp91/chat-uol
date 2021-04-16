@@ -3,7 +3,8 @@ let nome;
 let requisicaoEntrada;
 let elementoLogin;
 let elementoCarregando;
-
+let contatoSelecionado = "Todos";
+let visibilidadeSelecionada = "Público";
 
 function entrarNaSala() {
     nome = document.querySelector(".tela-entrada input").value;
@@ -59,28 +60,45 @@ function buscarParticipantes() {
 function renderizarParticipantes(participantes) {
     const arrayParticipantes = participantes.data;
     const elementoListaContatos = document.querySelector(".lista-contatos");
-    elementoListaContatos.innerHTML = `
+
+    if (contatoSelecionado === "Todos") {
+        elementoListaContatos.innerHTML = `
         <li onclick="selecionarContato(this)" class="contato selecionado">
             <ion-icon name="people"></ion-icon>
             <span>Todos</span>
             <img src="medias/checkverde.png" alt="ícone de checkmark verde">
         </li>
-    `;
-
+        `;
+    } else {
+        elementoListaContatos.innerHTML = `
+        <li onclick="selecionarContato(this)" class="contato">
+            <ion-icon name="people"></ion-icon>
+            <span>Todos</span>
+            <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
+        </li>
+        `;
+    }
+    
     for (let i = 0; i < arrayParticipantes.length; i++) {
-        elementoListaContatos.innerHTML += `
+        if (contatoSelecionado !== arrayParticipantes[i].name) {
+            elementoListaContatos.innerHTML += `
             <li onclick="selecionarContato(this)" class="contato">
                 <ion-icon name="person-circle"></ion-icon>
                 <span>${arrayParticipantes[i].name}</span>
                 <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
             </li>
-        `;
-        //depois tirar aqui o meu nome da lista de contatos
-        //tratar para ficar com o check verde mesmo se atualizar
+            `;
+        } else {
+            elementoListaContatos.innerHTML += `
+            <li onclick="selecionarContato(this)" class="contato selecionado">
+                <ion-icon name="person-circle"></ion-icon>
+                <span>${arrayParticipantes[i].name}</span>
+                <img src="medias/checkverde.png" alt="ícone de checkmark verde">
+            </li>
+            `;
+        }
     }
 }
-
-let contatoSelecionado = "Todos";
 
 function selecionarContato(contato) {
     const contatoSelecionadoAntes = document.querySelector(".tela-contatos .selecionado");
@@ -96,8 +114,6 @@ function selecionarContato(contato) {
 
     trocarAlvoMensagem();
 }
-
-let visibilidadeSelecionada = "Público";
 
 function selecionarVisibilidade(visibilidade) {
     const visibilidadeSelecionadaAntes = document.querySelector(".visibilidade .selecionado");

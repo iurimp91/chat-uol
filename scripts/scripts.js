@@ -4,15 +4,20 @@ let nome;
 function entrarNaSala() {
     nome = document.querySelector(".tela-entrada input").value;
     objetoNome = {name: nome};
-    const requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
+    let requisicaoEntrada;
+    let elementoLogin;
+    let elementoCarregando;
 
-    requisicaoEntrada.then(loginAceito);
-    requisicaoEntrada.catch(loginErro);
+    if (nome !== "") {
+        requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
+        requisicaoEntrada.then(loginAceito);
+        requisicaoEntrada.catch(loginErro);
 
-    const elementoLogin = document.querySelector(".login");
-    const elementoCarregando = document.querySelector(".carregando");
-    elementoLogin.classList.add("escondido");
-    elementoCarregando.classList.remove("escondido");
+        elementoLogin = document.querySelector(".login");
+        elementoCarregando = document.querySelector(".carregando");
+        elementoLogin.classList.add("escondido");
+        elementoCarregando.classList.remove("escondido");
+    }
 }
 
 function loginAceito() {
@@ -134,7 +139,7 @@ function renderizarMensagens(mensagens) {
             elementoMensagens.innerHTML += `
             <li class="mensagem">
                 <div class="hora">(${arrayMensagens[i].time})</div>
-                <div class="texto"><strong>${arrayMensagens[i].from}</strong> para <strong>Todos:</strong> ${arrayMensagens[i].text}</div>
+                <div class="texto"><strong>${arrayMensagens[i].from}</strong> para <strong>${arrayMensagens[i].to}:</strong> ${arrayMensagens[i].text}</div>
             </li>
         `;
         }
@@ -157,11 +162,21 @@ function rolarPaginaBaixo() {
 }
 
 function enviarMensagem() {
-    const textoMensagem = document.querySelector(".caixa-texto input").value;
-    const objetoMensagem = {from: nome, to: "Todos", text: textoMensagem, type: "message"};
-    const promessaMensagem = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", objetoMensagem);
-    promessaMensagem.then(buscarMensagens);
-    promessaMensagem.catch(desconectado);
+    let textoMensagem = document.querySelector(".caixa-texto input").value;
+    let objetoMensagem;
+    let promessaMensagem;
+
+    if (visibilidadeSelecionada === "Público") {
+        objetoMensagem = {from: nome, to: contatoSelecionado, text: textoMensagem, type: "message"};
+    } else {
+        objetoMensagem = {from: nome, to: contatoSelecionado, text: textoMensagem, type: "private_message"};
+    }
+    
+    if (textoMensagem !== "") {
+        promessaMensagem = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", objetoMensagem);
+        promessaMensagem.then(buscarMensagens);
+        promessaMensagem.catch(desconectado);
+    }
 }
 
 function desconectado() {

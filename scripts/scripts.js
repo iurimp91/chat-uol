@@ -1,12 +1,13 @@
 let objetoNome;
 let nome;
+let requisicaoEntrada;
+let elementoLogin;
+let elementoCarregando;
+
 
 function entrarNaSala() {
     nome = document.querySelector(".tela-entrada input").value;
     objetoNome = {name: nome};
-    let requisicaoEntrada;
-    let elementoLogin;
-    let elementoCarregando;
 
     if (nome !== "") {
         requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
@@ -40,8 +41,10 @@ function loginAceito() {
 }
 
 function loginErro() {
-    alert("Esse nome de usuário já existe!");
-    //tratar o reload da tela quando isso acontecer. ela ta ficand ona tela de loading.
+    elementoLogin.classList.remove("escondido");
+    elementoCarregando.classList.add("escondido");
+    const mensagemUsuarioExiste = document.querySelector(".login span");
+    mensagemUsuarioExiste.classList.remove("escondido");
 }
 
 function manterConexao() {

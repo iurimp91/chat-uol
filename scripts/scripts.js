@@ -14,6 +14,9 @@ function loginAceito() {
     const elementoTelaEntrada = document.querySelector(".tela-entrada");
     elementoTelaEntrada.classList.add("escondido");
 
+    setInterval(buscarMensagens, 3000);
+    setInterval(manterConexao, 5000);
+
     buscarMensagens();
 }
 
@@ -23,8 +26,8 @@ function loginErro() {
 
 function manterConexao() {
     const conexaoAtiva = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status", objetoNome);
-    console.log("Estou conectado");
-    console.log(objetoNome);
+    //console.log("Estou conectado");
+    //console.log(objetoNome);
 }
 
 function buscarMensagens() {
@@ -34,8 +37,9 @@ function buscarMensagens() {
 
 function renderizarMensagens(mensagens) {
     const arrayMensagens = mensagens.data;
-    console.log(arrayMensagens);
+    //console.log(arrayMensagens);
     const elementoMensagens = document.querySelector(".mensagens");
+    elementoMensagens.innerHTML = "";
 
     for (let i = 0; i < arrayMensagens.length; i++) {
         if (arrayMensagens[i].type === "status") {
@@ -56,7 +60,7 @@ function renderizarMensagens(mensagens) {
         `;
         }
 
-        if (arrayMensagens[i].type === "private_message") {
+        if (arrayMensagens[i].type === "private_message" && arrayMensagens[i].to === nome) {
             elementoMensagens.innerHTML += `
             <li class="mensagem reservada">
                 <div class="hora">(${arrayMensagens[i].time})</div>
@@ -68,9 +72,6 @@ function renderizarMensagens(mensagens) {
     rolarPaginaBaixo();
 }
 
-//setInterval(buscarMensagens, 3000);
-//setInterval(manterConexao, 5000);
-
 function rolarPaginaBaixo() {
     const elementoRolagem = document.querySelector(".mensagens li:last-child");
     elementoRolagem.scrollIntoView();
@@ -81,5 +82,10 @@ function enviarMensagem() {
     const objetoMensagem = {from: nome, to: "Todos", text: textoMensagem, type: "message"};
     const promessaMensagem = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", objetoMensagem);
     promessaMensagem.then(buscarMensagens);
-    //promessaMensagem.catch(desconectado);
+    promessaMensagem.catch(desconectado);
+}
+
+function desconectado() {
+    alert("Você foi desconectado, por favor, faça o login novamente.");
+    window.location.reload();
 }

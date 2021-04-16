@@ -64,7 +64,7 @@ function renderizarParticipantes(participantes) {
     if (contatoSelecionado === "Todos") {
         elementoListaContatos.innerHTML = `
         <li onclick="selecionarContato(this)" class="contato selecionado">
-            <ion-icon name="people"></ion-icon>
+            <div><ion-icon name="people"></ion-icon></div>
             <span>Todos</span>
             <img src="medias/checkverde.png" alt="ícone de checkmark verde">
         </li>
@@ -72,7 +72,7 @@ function renderizarParticipantes(participantes) {
     } else {
         elementoListaContatos.innerHTML = `
         <li onclick="selecionarContato(this)" class="contato">
-            <ion-icon name="people"></ion-icon>
+            <div><ion-icon name="people"></ion-icon></div>
             <span>Todos</span>
             <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
         </li>
@@ -83,7 +83,7 @@ function renderizarParticipantes(participantes) {
         if (contatoSelecionado !== arrayParticipantes[i].name) {
             elementoListaContatos.innerHTML += `
             <li onclick="selecionarContato(this)" class="contato">
-                <ion-icon name="person-circle"></ion-icon>
+                <div><ion-icon name="person-circle"></ion-icon></div>
                 <span>${arrayParticipantes[i].name}</span>
                 <img class="escondido" src="medias/checkverde.png" alt="ícone de checkmark verde">
             </li>
@@ -91,7 +91,7 @@ function renderizarParticipantes(participantes) {
         } else {
             elementoListaContatos.innerHTML += `
             <li onclick="selecionarContato(this)" class="contato selecionado">
-                <ion-icon name="person-circle"></ion-icon>
+                <div><ion-icon name="person-circle"></ion-icon></div>
                 <span>${arrayParticipantes[i].name}</span>
                 <img src="medias/checkverde.png" alt="ícone de checkmark verde">
             </li>
@@ -203,6 +203,8 @@ function enviarMensagem() {
         promessaMensagem.then(buscarMensagens);
         promessaMensagem.catch(desconectado);
     }
+    const elementoMensagem = document.querySelector(".caixa-texto input");
+    elementoMensagem.value = "";
 }
 
 const elementoInputMensagem = document.querySelector(".caixa-texto input");

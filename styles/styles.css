@@ -119,8 +119,8 @@ input:focus {
     background-color: white;
     text-align: center;
     font-size: 16px;
-    overflow-y: auto;
     word-break: break-all;
+    overflow-y: auto;
 }
 
 h1 {

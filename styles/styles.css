@@ -167,7 +167,7 @@ h1:last-child {
     background-color: white;
 }
 
-.tela-entrada img {
+.tela-entrada .logo {
     width: 130px;
     height: 92px;
     margin: 72px 0 94px 0;
@@ -198,6 +198,21 @@ h1:last-child {
     cursor: pointer;
 }
 
+.carregando img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.tela-entrada span {
+    font-size: 18px;
+}
+
+.login, .carregando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .escondido {
     display: none;

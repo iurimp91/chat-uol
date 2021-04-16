@@ -8,6 +8,11 @@ function entrarNaSala() {
 
     requisicaoEntrada.then(loginAceito);
     requisicaoEntrada.catch(loginErro);
+
+    const elementoLogin = document.querySelector(".login");
+    const elementoCarregando = document.querySelector(".carregando");
+    elementoLogin.classList.add("escondido");
+    elementoCarregando.classList.remove("escondido");
 }
 
 function loginAceito() {

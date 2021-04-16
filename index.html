@@ -68,9 +68,15 @@
     </div>
 
     <div class="tela-entrada">
-        <img src="medias/logouol.png" alt="Logo do bate-papo UOL">
-        <input type="text" placeholder="Digite seu nome">
-        <button onclick="entrarNaSala()">Entrar</button>
+        <img class="logo" src="medias/logouol.png" alt="Logo do bate-papo UOL">
+        <div class="login">
+            <input type="text" placeholder="Digite seu nome">
+            <button onclick="entrarNaSala()">Entrar</button>
+        </div>
+        <div class="carregando escondido">
+            <img src="medias/loading.gif" alt="Círculo formado por bolas girando">
+            <span>Entrando...</span>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

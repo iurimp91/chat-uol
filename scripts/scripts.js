@@ -65,6 +65,8 @@ function renderizarParticipantes(participantes) {
     }
 }
 
+let contatoSelecionado = "Todos";
+
 function selecionarContato(contato) {
     const contatoSelecionadoAntes = document.querySelector(".tela-contatos .selecionado");
     contatoSelecionadoAntes.classList.remove("selecionado");
@@ -72,10 +74,15 @@ function selecionarContato(contato) {
     elementoCheckVerdeSelecionadoAntes.classList.add("escondido");
 
     const elementoCheckVerde = contato.querySelector("img");
-    const contatoSelecionado = contato.querySelector("span").innerHTML;
+    contatoSelecionado = contato.querySelector("span").innerHTML;
+    console.log(contatoSelecionado);
     elementoCheckVerde.classList.remove("escondido");
     contato.classList.add("selecionado");
+
+    trocarAlvoMensagem();
 }
+
+let visibilidadeSelecionada = "Público";
 
 function selecionarVisibilidade(visibilidade) {
     const visibilidadeSelecionadaAntes = document.querySelector(".visibilidade .selecionado");
@@ -83,12 +90,24 @@ function selecionarVisibilidade(visibilidade) {
     const elementoCheckVerdeSelecionadoAntes = visibilidadeSelecionadaAntes.querySelector("img");
     elementoCheckVerdeSelecionadoAntes.classList.add("escondido");
     
-    const visibilidadeSelecionada = visibilidade.querySelector("span").innerHTML;
+    visibilidadeSelecionada = visibilidade.querySelector("span").innerHTML;
     console.log(visibilidadeSelecionada);
     const elementoCheckVerde = visibilidade.querySelector("img");
     elementoCheckVerde.classList.remove("escondido");
     visibilidade.classList.add("selecionado");
     
+    trocarAlvoMensagem();
+}
+
+function trocarAlvoMensagem() {
+    const elementoAlvoMensagem = document.querySelector(".alvo-mensagem");
+
+    if (visibilidadeSelecionada === "Público") {
+        elementoAlvoMensagem.innerHTML = `Enviando para ${contatoSelecionado} (publicamente)`;
+
+    } else {
+        elementoAlvoMensagem.innerHTML = `Enviando para ${contatoSelecionado} (reservadamente)`;
+    }
 }
 
 function buscarMensagens() {

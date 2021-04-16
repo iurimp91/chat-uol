@@ -20,6 +20,13 @@ function entrarNaSala() {
     }
 }
 
+const elementoInputNome = document.querySelector(".tela-entrada input");
+elementoInputNome.addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) {
+        entrarNaSala()
+    }
+});
+
 function loginAceito() {
     const elementoTelaEntrada = document.querySelector(".tela-entrada");
     elementoTelaEntrada.classList.add("escondido");
@@ -178,6 +185,13 @@ function enviarMensagem() {
         promessaMensagem.catch(desconectado);
     }
 }
+
+const elementoInputMensagem = document.querySelector(".caixa-texto input");
+elementoInputMensagem.addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) {
+        enviarMensagem()
+    }
+});
 
 function desconectado() {
     alert("Você foi desconectado, por favor, faça o login novamente.");

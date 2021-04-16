@@ -1,7 +1,8 @@
 let objetoNome;
+let nome;
 
 function entrarNaSala() {
-    const nome = document.querySelector(".tela-entrada input").value;
+    nome = document.querySelector(".tela-entrada input").value;
     objetoNome = {name: nome};
     const requisicaoEntrada = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants", objetoNome);
 
@@ -67,10 +68,18 @@ function renderizarMensagens(mensagens) {
     rolarPaginaBaixo();
 }
 
-//setInterval(buscarMensagens, 13000);
-setInterval(manterConexao, 5000);
+//setInterval(buscarMensagens, 3000);
+//setInterval(manterConexao, 5000);
 
 function rolarPaginaBaixo() {
     const elementoRolagem = document.querySelector(".mensagens li:last-child");
     elementoRolagem.scrollIntoView();
+}
+
+function enviarMensagem() {
+    const textoMensagem = document.querySelector(".caixa-texto input").value;
+    const objetoMensagem = {from: nome, to: "Todos", text: textoMensagem, type: "message"};
+    const promessaMensagem = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages", objetoMensagem);
+    promessaMensagem.then(buscarMensagens);
+    //promessaMensagem.catch(desconectado);
 }

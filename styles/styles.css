@@ -75,11 +75,15 @@ body {
     font-size: 14px;
 }
 
-.inferior input {
+.caixa-texto {
+    width: calc(100% - 60px);
+}
+
+.caixa-texto input {
     font-size: 18px;
     border: none;
     font-family: 'Roboto';
-    width: calc(100% - 40px);
+    width: 100%;
     margin-bottom: 8px;
 }
 

@@ -170,7 +170,7 @@ function renderizarMensagens(mensagens) {
         `;
         }
 
-        if (arrayMensagens[i].type === "private_message" && arrayMensagens[i].to === nome) {
+        if (arrayMensagens[i].type === "private_message" && (arrayMensagens[i].to === nome || arrayMensagens[i].from === nome || arrayMensagens[i].to === "Todos")) {
             elementoMensagens.innerHTML += `
             <li class="mensagem reservada">
                 <span class="hora">(${arrayMensagens[i].time})</span>
